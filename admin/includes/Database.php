@@ -19,8 +19,8 @@ class Database
     }
 
     private function confirm_query($result){
-        if(!result){
-            die("query kon niet worden uitgevoerd .$this->conenction->error");
+        if(!$result){
+            die("query kon niet worden uitgevoerd .$this->connection->error");
 
         }
     }

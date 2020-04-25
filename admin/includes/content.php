@@ -25,7 +25,7 @@
         echo $result['username']. "<br>";*/
 
 
-         $user = User::find_user_by_id(1);
+         $user = User::find_user_by_id(2);
 
 
          echo $user->username . " - " . $user->id . ' - ' . $user->first_name;

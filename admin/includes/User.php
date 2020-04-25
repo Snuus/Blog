@@ -11,13 +11,22 @@ class User
 
     public static function instantie($result){
         $the_object = new self();
-        $the_object->id = $result['id'];
-        $the_object->username = $result['username'];
-        $the_object->password = $result['password'];
-        $the_object->first_name = $result['first_name'];
-        $the_object->last_name = $result['last_name'];
+        foreach ($result as $the_attribute => $value)
+            if($the_object->has_the_attribute($the_attribute)){
+                $the_object->$the_attribute = $value;
+            }
+
         return $the_object;
+
     }
+
+    private function has_the_attribute($the_attribute){
+        $object_properties = get_object_vars($this);
+        return array_key_exists($the_attribute, $object_properties);
+    }
+
+
+
     public static function find_this_query($sql){
         global $database;
         $result = $database->query( $sql);
@@ -33,13 +42,19 @@ class User
 
     public static function  find_user_by_id($user_id){
         $result = self::find_this_query("SELECT * FROM user WHERE id=$user_id");
+
+        /*
         if(!empty($result)){
             return array_shift($result);
         }
 
+
         else{
             return false;
         }
+        */
+
+        return  !empty($result) ? array_shift( $result) : false;
     }
 
 }
