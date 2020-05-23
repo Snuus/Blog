@@ -10,10 +10,16 @@
 
     <div class="row">
        <div class="col-12">
+           <?php
+           if($database->connection){
+               echo 'CONNECTED';
+           }
+
+            ?>
            <h2>Test</h2>
            <hr>
            <?php
-           $users = User::find_all_users();
+           $users = User::find_all();
            foreach($users as $user){
                echo $user->username . "<br>";
            }
@@ -25,11 +31,37 @@
         echo $result['username']. "<br>";*/
 
 
-         $user = User::find_user_by_id(2);
+         $user = User::find_by_id(2);
 
 
          echo $user->username . " - " . $user->id . ' - ' . $user->first_name;
-        ?>
+         ?>
+         <?php
+
+         //Create User
+
+         $user = new User();
+         $user->username = "TEST10";
+         $user->password = "589";
+         $user->first_name = "sammy";
+         $user->last_name ="decursist";
+
+         $user->save();
+
+         //update user
+         $user = User::find_by_id(2);
+         $user->last_name ="TEST";
+         $user->save();
+
+
+        /*
+         //Delete User
+         $user = User::find_user_by_id( );
+         $user->delete();
+*/
+
+         ?>
+
 </div>
 
 </div>

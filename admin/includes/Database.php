@@ -20,7 +20,7 @@ class Database
 
     private function confirm_query($result){
         if(!$result){
-            die("query kon niet worden uitgevoerd .$this->connection->error");
+            die("query kon niet worden uitgevoerd" .$this->connection->error);
 
         }
     }
@@ -35,6 +35,10 @@ class Database
         return$escape_string;
     }
 
+
+    public function the_insert_id(){
+        return mysqli_insert_id($this->connection);
+    }
 }
 
 
