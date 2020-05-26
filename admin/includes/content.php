@@ -60,6 +60,26 @@
         */
 
          ?>
+           <h3>Alle foto's</h3>
+           <?php
+           $photos = Photo::find_all();
+           foreach ($photos as $photo){
+               echo $photo->title . "<br>";
+           }
+           ?>
+
+           <?php
+           //Nieuwe Foto
+           /*
+           $photo = new Photo();
+           $photo->title  = "Sam";
+           $photo->description = "test";
+           $photo->size = 15;
+
+           $photo->save();
+             */
+
+           ?>
 
 </div>
 
