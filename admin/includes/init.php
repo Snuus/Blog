@@ -6,7 +6,6 @@ defined('INCLUDES_PATH')? null : define( 'INCLUDES_PATH', SITE_ROOT.DS.'admin'.D
 defined('IMAGES_PATH')? null : define( 'IMAGES_PATH', SITE_ROOT.DS.'admin'.DS.'img');
 
 
-
 require_once("functions.php");
 require_once("config.php");
 require_once("Database.php");

@@ -88,7 +88,7 @@ class Db_object
         $properties_assoc = array();
 
         foreach ($properties as $key => $value){
-            $properties_assoc[] = "{key} ='{value}'";
+            $properties_assoc[] = "{$key} ='{$value}'";
         }
 
         $sql = "UPDATE " . static::$db_table .  " SET ";
@@ -99,10 +99,12 @@ class Db_object
         return(mysqli_affected_rows($database->connection) == 1) ? true : false;
     }
 
+
+
     public function delete() {
         global $database;
         $sql = "DELETE FROM " . static::$db_table;
-        $sql .= "WHERE id= " . $database->escape_string($this->id);
+        $sql .= " WHERE id= " . $database->escape_string($this->id);
         $sql .= " LIMIT 1";
 
         $database->query($sql);
