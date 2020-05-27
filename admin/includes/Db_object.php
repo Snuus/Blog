@@ -3,7 +3,17 @@
 
 class Db_object
 {
-
+    public $errors = array();
+    public $upload_errors_array = array(
+        UPLOAD_ERR_OK => "There is no error",
+        UPLOAD_ERR_INI_SIZE => "The uploaded file exceeds the upload max filesize from php.ini",
+        UPLOAD_ERR_FORM_SIZE => "The upload file exceeds MAX_FILE_SIZE in php.ini for html form",
+        UPLOAD_ERR_NO_FILE => "no file uploaded",
+        UPLOAD_ERR_PARTIAL => "The file was partially uploaded",
+        UPLOAD_ERR_NO_TMP_DIR => "Missing a temporary folder",
+        UPLOAD_ERR_CANT_WRITE => "Failed to write to disk",
+        UPLOAD_ERR_EXTENSION => "A php extension stopped your upload"
+    );
 
     public static function find_all(){
         return static::find_this_query("SELECT * FROM " . static::$db_table);

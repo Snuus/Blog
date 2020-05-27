@@ -14,33 +14,22 @@ class Photo extends Db_object
     public $alternate_text;
     public $type;
     public $size;
-
     public $tmp_path;
     public $upload_directory = 'img';
-    public $errors = array();
-    public $upload_errors_array = array(
-        UPLOAD_ERR_OK =>"There is no error",
-        UPLOAD_ERR_INI_SIZE => "The Upload file exceeds the maximum filesize",
-        UPLOAD_ERR_FORM_SIZE => "The upload file exceeds Max file size",
-        UPLOAD_ERR_NO_FILE => "There is no file uploaded",
-        UPLOAD_ERR_PARTIAL=> "the file was partially uploaded",
-        UPLOAD_ERR_NO_TMP_DIR=> "Missing Temp folder",
-        UPLOAD_ERR_CANT_WRITE=> "Failed to write to disk",
-        UPLOAD_ERR_EXTENSION=> "A php extension stopped your upload"
-    );
 
     public function set_file($file){
         if(empty($file) || !$file || !is_array($file)){
             $this->errors[] = "No file uploaded";
             return false;
-        }elseif($file['error'] != 0){
+        }elseif ($file['error'] != 0){
             $this->errors[] = $this->upload_errors_array[$file['error']];
             return false;
         }else{
             $this->filename = basename($file['name']);
-            $this->tmp_path = $file['tmp_path'];
+            $this->tmp_path = $file['tmp_name'];
             $this->type = $file['type'];
             $this->size = $file['size'];
+
         }
     }
 
@@ -48,15 +37,15 @@ class Photo extends Db_object
         if($this->id){
             $this->update();
         }else{
-            if(!empty($this->error)){
+            if(!empty($this->errors)){
                 return false;
             }
 
-        if(empty($this->filemname) || empty($this->temp_path)){
+        if(empty($this->filename) || empty($this->tmp_path)){
             $this->errors[] = "File not available";
             return false;
         }
-        $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->filename;
+        $target_path = SITE_ROOT . DS . "admin" . DS . $this->upload_directory . DS . $this->filename;
 
         if (file_exists($target_path)){
             $this->errors[] = "File {$this->filename} exists";
@@ -74,6 +63,9 @@ class Photo extends Db_object
 
         }
     }
+
+
+
 
     public function picture_path(){
         return $this->upload_directory.DS.$this->filename;
