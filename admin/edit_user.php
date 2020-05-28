@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
         }else{
             $user->set_file($_FILES['file']);
             $user->save_user_and_image();
-            $user->save();
+
             redirect('users.php');
         }
 
