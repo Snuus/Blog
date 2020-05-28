@@ -11,12 +11,16 @@ if (empty($_GET['id'])){
 }
 $user = User::find_by_id($_GET['id']);
 if($user){
-    $user->delete_photo();
+    $user->delete();
     redirect('users.php');
+    $target_path = SITE_ROOT . DS . 'admin' . DS . $user->upload_directory . DS . $user->user_image;
+    return unlink($target_path) ? true : false;
 }else{
     redirect('users.php');
 }
 ?>
+
+
 
 <?php include ("includes/sidebar.php"); ?>
 <?php include ("includes/content-top.php"); ?>

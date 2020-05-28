@@ -16,17 +16,7 @@ class User extends Db_object
     public $type;
     public $size;
     public $tmp_path;
-    public $errors = array();
-    public $upload_errors_array = array(
-        UPLOAD_ERR_OK => "There is no error",
-        UPLOAD_ERR_INI_SIZE => "The uploaded file exceeds the upload max filesize from php.ini",
-        UPLOAD_ERR_FORM_SIZE => "The upload file exceeds MAX_FILE_SIZE in php.ini for html form",
-        UPLOAD_ERR_NO_FILE => "no file uploaded",
-        UPLOAD_ERR_PARTIAL => "The file was partially uploaded",
-        UPLOAD_ERR_NO_TMP_DIR => "Missing a temporary folder",
-        UPLOAD_ERR_CANT_WRITE => "Failed to write to disk",
-        UPLOAD_ERR_EXTENSION => "A php extension stopped your upload"
-    );
+
 
     public static function verify_user($user, $pass){
         global $database;
@@ -63,13 +53,15 @@ class User extends Db_object
 
     public function save_user_and_image(){
         $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->user_image;
-        if($this->id){
-            move_uploaded_file($this->tmp_path, $target_path);
 
-            $this->update();
-            unset($this->tmp_path);
-            return true;
-        }else{
+
+
+            if($this->id){
+                 move_uploaded_file($this->tmp_path, $target_path);
+                $this->update();
+                 unset($this->tmp_path);
+                 return true;
+            }else{
             if(!empty($this->errors)){
                 return false;
             }
@@ -83,7 +75,7 @@ class User extends Db_object
                 return false;
             }
             if(move_uploaded_file($this->tmp_path, $target_path)){
-                var_dump($this->$target_path);
+
                 if($this->create()){
 
                     unset($this->tmp_path);
@@ -93,8 +85,8 @@ class User extends Db_object
                 $this->errors[] = "This folder has no write rights!";
                 return false;
             }
-        }
+
     }
 }
-
+}
 ?>

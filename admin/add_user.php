@@ -1,21 +1,25 @@
 <?php
 include ('includes/header.php');
-/*if(!$session->is_signed_in()){
+if(!$session->is_signed_in()) {
     redirect('login.php');
-}*/
+}
 
 $user = new User();
 if(isset($_POST['submit'])){
-    //user toevoegen aan DB
-    $user->username = $_POST['username'];
-    $user->first_name = $_POST['first_name'];
-    $user->last_name = $_POST['last_name'];
-    $user->password = $_POST['password'];
+//user toevoegen aan DB
+$user->username = $_POST['username'];
+$user->first_name = $_POST['first_name'];
+$user->last_name = $_POST['last_name'];
+$user->password = $_POST['password'];
+    if (empty($_FILES['file'])){
+    $user->save();
+    }else{
     $user->set_file($_FILES['file']);
-
     $user->save_user_and_image();
+    $user->save();
+    redirect('users.php');
+    }
 }
-
 
 ?>
 <?php

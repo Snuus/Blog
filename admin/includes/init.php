@@ -1,18 +1,33 @@
 <?php
 
+
+//WINDOWS FILE PATH SETTINGS
+/*
 defined('DS')? null : define('DS', DIRECTORY_SEPARATOR);
-define('SITE_ROOT', DS . 'wamp64' . DS .  'www' . DS . 'Blog');
+define('SITE_ROOT',DS . 'wamp64' . DS . 'wamp64' . DS .  'www' . DS . 'Blog');
+defined('INCLUDES_PATH')? null : define( 'INCLUDES_PATH', SITE_ROOT.DS.'admin'.DS.'includes');
+defined('IMAGES_PATH')? null : define( 'IMAGES_PATH', SITE_ROOT.DS.'admin'.DS.'img');
+*/
+
+
+//MAC FILE PATH SETTINGS
+defined('DS')? null : define('DS', DIRECTORY_SEPARATOR);
+define('SITE_ROOT',DS. 'Applications' . DS . 'MAMP' . DS . 'htdocs' . DS . 'Blog');
 defined('INCLUDES_PATH')? null : define( 'INCLUDES_PATH', SITE_ROOT.DS.'admin'.DS.'includes');
 defined('IMAGES_PATH')? null : define( 'IMAGES_PATH', SITE_ROOT.DS.'admin'.DS.'img');
 
 
-require_once("functions.php");
-require_once("config.php");
-require_once("Database.php");
-require_once ("Db_object.php");
-require_once("User.php");
-require_once ("Photo.php");
-require_once("Session.php");
+
+
+
+require_once (INCLUDES_PATH.DS.'functions.php');
+require_once (INCLUDES_PATH.DS.'config.php');
+require_once (INCLUDES_PATH.DS.'Database.php');
+require_once (INCLUDES_PATH.DS.'Db_object.php');
+require_once (INCLUDES_PATH.DS.'User.php');
+require_once (INCLUDES_PATH.DS.'Session.php');
+require_once (INCLUDES_PATH.DS.'Photo.php');
+require_once (INCLUDES_PATH.DS.'Comment.php');
 
 ?>
 

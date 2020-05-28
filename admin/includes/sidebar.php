@@ -32,10 +32,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="users.php">All Users</a>
-                <a class="collapse-item" href="createUser.php">Create User</a>
-                <a class="collapse-item" href="editUser.php">Edit User</a>
-                <a class="collapse-item" href="deleteUser.php">Delete User</a>
+                <a class="collapse-item" href="users.php">Manage Users</a>
+                <a class="collapse-item" href="add_user.php">Create User</a>
+
             </div>
         </div>
     </li>
@@ -44,7 +43,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="upload.php">
 
             <span>Upload</span>
             <i class="fas fa-upload"></i>
