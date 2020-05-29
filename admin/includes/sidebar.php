@@ -61,7 +61,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="comments.php">
 
             <span>Comments</span>
             <i class="fas fa-comments"></i></a>
