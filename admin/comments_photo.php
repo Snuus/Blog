@@ -2,7 +2,12 @@
 if(!$session->is_signed_in()){
     redirect('login.php');
 }
-$comments = Comment::find_all();
+
+if(empty($_GET['id'])){
+    redirect("photos.php");
+}
+
+$comments = Comment::find_the_comment($_GET['id']);
 
 ?>
 <?php include ("includes/sidebar.php"); ?>
@@ -13,7 +18,7 @@ $comments = Comment::find_all();
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <h2>Comments</h2>
+            <h2>Comments FOR THIS PHOTO</h2>
             <td><a href="add_comment.php" class="btn btn-primary rounded-0"><i class="fas fa-comment"></i>Add Comment</a></td>
             <table class="table table-header">
                 <thead>
@@ -33,7 +38,7 @@ $comments = Comment::find_all();
                         <td><?php echo $comment->id;?></td>
                         <td><?php echo $comment->author;?></td>
                         <td><?php echo $comment->body;?></td>
-                        <td><a href="delete_comment.php?id=<?php echo $comment->id; ?>" class="btn btn-danger rounded-0"><i class="fas fa-trash-alt"></i></a></td>
+                        <td><a href="delete_comment_photo.php?id=<?php echo $comment->id; ?>" class="btn btn-danger rounded-0"><i class="fas fa-trash-alt"></i></a></td>
 
                     </tr>
                 <?php endforeach; ?>
