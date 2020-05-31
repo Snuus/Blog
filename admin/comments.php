@@ -20,6 +20,7 @@ $comments = Comment::find_all();
                 <tr>
 
                     <th>Id</th>
+
                     <th>Author</th>
                     <th>Body</th>
                     <th>Delete</th>
@@ -28,15 +29,19 @@ $comments = Comment::find_all();
                 </tr>
                 </thead>
                 <tbody>
+
                 <?php foreach ($comments as $comment): ?>
+
                     <tr>
                         <td><?php echo $comment->id;?></td>
+
                         <td><?php echo $comment->author;?></td>
                         <td><?php echo $comment->body;?></td>
                         <td><a href="delete_comment.php?id=<?php echo $comment->id; ?>" class="btn btn-danger rounded-0"><i class="fas fa-trash-alt"></i></a></td>
 
                     </tr>
                 <?php endforeach; ?>
+
                 </tbody>
             </table>
         </div>

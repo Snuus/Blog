@@ -1,7 +1,10 @@
 <?php include ("includes/header.php");
+
 if(!$session->is_signed_in()){
     redirect('login.php');
 }
+
+$photo = Photo::find_by_id($_GET['id']);
 
 if(empty($_GET['id'])){
     redirect("photos.php");
@@ -18,7 +21,7 @@ $comments = Comment::find_the_comment($_GET['id']);
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <h2>Comments FOR THIS PHOTO</h2>
+            <h2>Comments for photo with name : <?php echo $photo->title ?></h2>
             <td><a href="add_comment.php" class="btn btn-primary rounded-0"><i class="fas fa-comment"></i>Add Comment</a></td>
             <table class="table table-header">
                 <thead>
