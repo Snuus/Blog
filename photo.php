@@ -1,6 +1,6 @@
 <?php
 include("includes/header.php");
-require_once("admin/includes/init.php");
+//require_once("admin/includes/init.php");
 ?>
 <?php
 if (empty($_GET['id'])){
