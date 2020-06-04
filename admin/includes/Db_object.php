@@ -15,6 +15,17 @@ class Db_object
         UPLOAD_ERR_EXTENSION => "A php extension stopped your upload"
     );
 
+
+
+    public static function  count_all(){
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . static::$db_table;
+        $result_set = $database->query($sql);
+        $row = mysqli_fetch_array($result_set);
+
+        return array_shift($row);
+    }
+
     public static function find_all(){
         return static::find_this_query("SELECT * FROM " . static::$db_table);
         //return static::find_this_query("SELECT * FROM users");
